@@ -24,15 +24,16 @@ def copy_file():
     source1 = open_window()
     destination1=filedialog.askdirectory()
     shutil.copy(source1,destination1)
-    mb.showinfo('confirmation', "File Copied !")
+    mb.showinfo('Confirmation', "File Copied !")
 
     # delete file function
 def delete_file():
     del_file = open_window()
     if os.path.exists(del_file):
-        os.remove(del_file)             
+        os.remove(del_file)  
+        mb.showinfo('Confirmation', "File Deleted !")           
     else:
-        mb.showinfo('confirmation', "File not found !")
+        mb.showinfo('Confirmation', "File not found !")
 
 # rename file function
 def rename_file():
@@ -44,17 +45,17 @@ def rename_file():
     path = os.path.join(path1, newName+extension)
     print(path)
     os.rename(chosenFile,path) 
-    mb.showinfo('confirmation', "File Renamed !")
+    mb.showinfo('Confirmation', "File Renamed !")
 
     # move file function
 def move_file():
     source = open_window()
     destination =filedialog.askdirectory()
     if(source==destination):
-        mb.showinfo('confirmation', "Source and destination are same")
+        mb.showinfo('Confirmation', "Source and destination are same")
     else:
         shutil.move(source, destination)  
-        mb.showinfo('confirmation', "File Moved !")
+        mb.showinfo('Confirmation', "File Moved !")
 
         # function to make a new folder
 def make_folder():
@@ -63,13 +64,13 @@ def make_folder():
     newFolder=input()
     path = os.path.join(newFolderPath, newFolder)  
     os.mkdir(path)
-    mb.showinfo('confirmation', "Folder created !")
+    mb.showinfo('Confirmation', "Folder created !")
 
     # function to remove a folder
 def remove_folder():
     delFolder = filedialog.askdirectory()
     os.rmdir(delFolder)
-    mb.showinfo('confirmation', "Folder Deleted !")
+    mb.showinfo('Confirmation', "Folder Deleted !")
 
 # function to list all the files in folder
 def list_files():
@@ -81,18 +82,21 @@ def list_files():
         print(sortlist[i]+'\n')
         i+=1
 
+def about():
+    mb.showinfo('About', "File Manager project made by Manav Gupta(201390) and Jyotirmay Verma(201157)")
 
 root = Tk()        
 # creating a canvas to insert image
 
 # creating label and buttons to perform operations
-Label(root, text="File Manager by Manav and Jyotirmay", font=("Helvetica", 16), fg="blue").grid(row = 5, column = 2)
-Button(root, text = "Open a File", command = open_file).grid(row=15, column =2)
-Button(root, text = "Copy a File", command = copy_file).grid(row = 25, column = 2)
-Button(root, text = "Delete a File", command = delete_file).grid(row = 35, column = 2)
-Button(root, text = "Rename a File", command = rename_file).grid(row = 45, column = 2)
-Button(root, text = "Move a File", command = move_file).grid(row = 55, column =2)
-Button(root, text = "Make a Folder", command = make_folder).grid(row = 75, column = 2)
-Button(root, text = "Remove a Folder", command = remove_folder).grid(row = 65, column =2)
-Button(root, text = "List all Files in Directory", command = list_files).grid(row = 85,column = 2)
+Label(root, text="  File Manager  ", font=("InaiMathi", 16), fg="black").grid(row = 5, column = 2)
+Button(root, text = "Open a File", command = open_file,activeforeground="blue").grid(row=15, column =2)
+Button(root, text = "Copy a File", command = copy_file,activeforeground="blue").grid(row = 25, column = 2)
+Button(root, text = "Delete a File", command = delete_file,activeforeground="blue").grid(row = 35, column = 2)
+Button(root, text = "Rename a File", command = rename_file,activeforeground="blue").grid(row = 45, column = 2)
+Button(root, text = "Move a File", command = move_file,activeforeground="blue").grid(row = 55, column =2)
+Button(root, text = "Make a Folder", command = make_folder,activeforeground="blue").grid(row = 75, column = 2)
+Button(root, text = "Remove a Folder", command = remove_folder,activeforeground="blue").grid(row = 65, column =2)
+Button(root, text = "List all Files in Directory", command = list_files,activeforeground="blue").grid(row = 85,column = 2)
+Button(root, text = "About", command = about,activeforeground="blue").grid(row = 95,column = 2)
 root.mainloop()
